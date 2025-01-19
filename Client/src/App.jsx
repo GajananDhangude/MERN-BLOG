@@ -1,14 +1,26 @@
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Dashboard from "./pages/Dashboard";
+import Projects from "./pages/Projects";
 
 function App() {
-
-
   return (
     <>
-    <h1 className="ml-3 text-2xl text-red-600">Hello World!</h1>
+      <BrowserRouter className="ml-3">
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/Sign-in" element={<SignIn/>}/>
+          <Route path="/Sign-up" element={<SignUp/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/projects" element={<Projects/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
