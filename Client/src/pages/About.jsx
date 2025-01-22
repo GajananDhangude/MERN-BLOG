@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Button } from "flowbite-react";
 
 const About = () => {
   return (
     <div>
-        <h1>About</h1>
+      
     </div>
   )
 }
