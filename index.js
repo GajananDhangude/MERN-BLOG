@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const userRoute = require("./routes/user")
+const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth")
 
 dotenv.config();
 
@@ -17,6 +18,9 @@ async function main() {
 
 }
 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 
 app.get("/" ,(req , res) =>{
     console.log("This is a Home Page")
@@ -24,6 +28,7 @@ app.get("/" ,(req , res) =>{
 });
 
 app.use("/" , userRoute);
+app.use("/" , authRoute);
 
 
 
