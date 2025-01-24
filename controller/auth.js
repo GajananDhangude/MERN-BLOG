@@ -1,12 +1,13 @@
 const User = require("../models/User");
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const errorHandler = require("../utils/error")
 
-module.exports.signup = async(req , res) =>{
+module.exports.signup = async(req , res , next) =>{
     let { username , email , password} = req.body;
     
 
     if(!username || !email || !password || username ==="" || email === "" || password ===""){
-        return res.status(400).json({message: "All fields are required"});
+        next(errorHandler(400 , "All fields Are required"))
     }
 
 
@@ -22,7 +23,8 @@ module.exports.signup = async(req , res) =>{
         await newUser.save();
         res.json("signup successfull");
     } catch(err) {
-        res.status(500).json({message: "All fields are required"});
+        next(err);
+        
     }
 
     

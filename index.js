@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth")
+const ExpressError = require("./utils/error");
 
 dotenv.config();
 
@@ -29,6 +30,20 @@ app.get("/" ,(req , res) =>{
 
 app.use("/" , userRoute);
 app.use("/" , authRoute);
+
+
+
+
+app.use((err , req , res , next) =>{
+    const statuscode = err.statuscode || 500;
+    const message = err.message || "internal server error";
+    res.status(statuscode).json({
+        success: false,
+        statuscode,
+        message
+    })
+})
+
 
 
 
